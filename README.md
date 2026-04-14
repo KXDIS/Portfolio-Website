@@ -1,6 +1,6 @@
-#Terminal Portfolio Website
+# Terminal Portfolio Website
 
-##Overview
+## Overview
 This is my personal portfolio website built using HTML, CSS, and JavaScript.  
 The design is inspired by a **terminal/command-line interface**, featuring animated typing effects, glowing UI elements, and an interactive experience section.
 
@@ -29,6 +29,6 @@ The site showcases my background, skills, and experience as a Cybersecurity orri
 
 ---
 
-##Future Improvements 
+## Future Improvements 
 - Add dedicated projects page with live demos
 - Deploy using github pages/self hosting

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+<script>
+function toggleCollapse(button) {
+  const content = button.nextElementSibling;
+  button.classList.toggle('active');
+  content.classList.toggle('show');
+  button.textContent = button.classList.contains('active') ? '▶ IT Techmod Technician' : '▶ IT Techmod Technician ';
+}
+</script>
+<header>
+     <ul>
+            <li><a href="index.html"> Home </a></li>
+            <li><a href="experience.html"> Experience </a></li>
+            <li><a href="projects.html"> Projects </a></li>
+            <li><a href="contact.html"> Contact </a></li>
+    </ul>
+
+</header>
+
+
+<main class = "terminal-header">
+    <div class="terminal-content">
+        <div class="cmd-line">$ sudo experience</div>
+        <div class="date-one">$ dir -2025 </div>
+        <div class="collapsible-box">
+            <button class="collapsible-btn" onclick="toggleCollapse(this)">▶ IT TechMod Technician </button>
+            <div class="collapsible-content">
+                <p>Summer IT Technician of travelling team servicing multiple schools <br/><br/>
+                   &emsp;  •Deployed desktops/printers/network hardware to newly built elementary school for curriculum and administrative
+objectives </p>
+            </div>
+        </div>
+        <h1 class="name">Hendrick Nguyen</h1>
+        <div class="">Hi! My name is Hendrick Nguyen. I'm a computer science <br/>
+student in my junior year.</div>
+        <div class= "skills-header">$ skills</div>
+        <div class="skills">Java· JavaScript · C++ · HTML · CSS</div>
+    </div>
+</main>
+   
+        
+    
+</body>
+</html>

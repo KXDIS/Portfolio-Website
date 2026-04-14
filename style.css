@@ -1,0 +1,373 @@
+:root{
+  --cell: 40px;   /* grid cell size */
+  --line: 1px;    /* grid line thickness */
+  --bezel: 3px;   /* visible bezel inside each tile */
+}
+
+
+body {
+  
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #c0c0c0;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* full-viewport grid + fade */
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-color: #000;
+
+ 
+  background-image:
+     linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%),
+  linear-gradient(to right, rgba(255,255,255,0.04) var(--bezel), transparent var(--bezel) calc(100% - var(--bezel)), rgba(255,255,255,0.04) calc(100% - var(--bezel))),
+  linear-gradient(to bottom, rgba(255,255,255,0.04) var(--bezel), transparent var(--bezel) calc(100% - var(--bezel)), rgba(255,255,255,0.04) calc(100% - var(--bezel))),
+  repeating-linear-gradient(to right, rgba(255,255,255,0.04) 0 var(--line), transparent var(--line) var(--cell)),
+  repeating-linear-gradient(to bottom, rgba(255,255,255,0.04) 0 var(--line), transparent var(--line) var(--cell));
+
+  /* make the bezel and grid tile at the same cell size so you can see where tiles repeat */
+  background-size:
+    auto,
+    var(--cell) var(--cell),
+    var(--cell) var(--cell),
+    var(--cell) var(--cell),
+    var(--cell) var(--cell);
+
+  background-repeat: repeat;
+  opacity: 0.98;
+}
+
+@keyframes gradientGlow {
+  0% {
+    box-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33, 0 0 30px #33ff33, inset 0 0 10px rgba(51, 255, 51, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px #33ff33, 0 0 25px #33ff33, 0 0 35px #33ff33, inset 0 0 15px rgba(51, 255, 51, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33, 0 0 30px #33ff33, inset 0 0 10px rgba(51, 255, 51, 0.3);
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.terminal-header{
+     border: 2.5px solid green;
+    padding: 5rem;
+    background-color: #111;
+    box-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33, 0 0 30px #33ff33, inset 0 0 10px rgba(51, 255, 51, 0.3);
+    max-width: 900px;
+    margin: 2rem auto;
+    animation: gradientGlow 3s ease-in-out infinite;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.terminal-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.terminal-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 2px solid #33ff33;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.terminal-header::after {
+  content: '';
+  position: absolute;
+  bottom: 5rem;
+  right: 5rem;
+  width: 2px;
+  height: 1.2em;
+  background-color: #33ff33;
+  animation: blink 0.5s step-end 0.8s infinite;
+}
+
+.cmd-line {
+    color: #33ff33;
+    font-size: 1rem;
+    margin-bottom: .5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation: typing 0.8s steps(10, end) forwards;
+    animation-delay: 0s;
+}
+
+.name{
+    font-size: 2.5rem;
+    color: #fff;
+    margin: .2rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation: typing 1s steps(15, end) forwards;
+    animation-delay: 0.8s;
+}
+
+.title {
+  font-size: 1.3rem;
+  color: #ddd;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 1s steps(22, end) forwards;
+  animation-delay: 1.8s;
+}
+
+.skills-header{
+    color: #33ff33;
+    font-size: 1rem;
+    margin-bottom: .5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation: typing 0.8s steps(10, end) forwards;
+    animation-delay: 2.8s;
+}
+
+.skills {
+  font-size: 1rem;
+  color: #aaa;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 1.2s steps(30, end) forwards;
+  animation-delay: 3.6s;
+  margin-bottom: 1rem;
+}
+
+.bio-header{
+  color: #33ff33;
+    font-size: 1rem;
+    margin-bottom: .5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation: typing 0.8s steps(10, end) forwards;
+    animation-delay: 2.8s;
+}
+.bio {font-size: 1rem;
+  color: #aaa;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 1.2s steps(30, end) forwards;
+  animation-delay: 3.6s;
+  margin-bottom: 1rem;
+  
+}
+
+.hobbies-header{
+  color: #33ff33;
+    font-size: 1rem;
+    margin-bottom: .5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation: typing 0.8s steps(10, end) forwards;
+    animation-delay: 2.8s;
+}
+
+.hobbies{
+ color: #aaa;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 1.2s steps(30, end) forwards;
+  animation-delay: 3.6s;
+  margin-bottom: 1rem;
+}
+
+.github-button {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+  animation-delay: 4.8s;
+  transition: transform 0.3s ease;
+}
+
+.github-logo {
+  width: 40px;
+  height: 40px;
+  filter: invert(1);
+}
+
+.github-button:hover {
+  transform: scale(1.15);
+}
+
+.linkedin-button {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+  animation-delay: 5.3s;
+  transition: transform 0.3s ease;
+  margin-left: 1rem;
+}
+
+.linkedin-logo {
+  width: 40px;
+  height: 40px;
+  filter: invert(1);
+}
+
+.linkedin-button:hover {
+  transform: scale(1.15);
+}
+/*Navigation Bar*/
+.ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 15px 0 0 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: transparent;
+}
+
+ul li {
+  display: inline-block;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 1.5rem;
+  background-color: #333333;
+  margin: 0 5px;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+ul li a:hover {
+  background-color: #111111;
+  transform: scale(1.1);
+}
+
+header{
+    background-color: transparent;
+    height: 50px;
+    width: 100%;
+    order: -1;
+}
+
+.date-one {
+    font-size: 1.2rem;
+  color: #aaa;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 1.2s steps(30, end) forwards;
+  animation-delay: 1s;
+  margin-bottom: 1rem;
+}
+
+
+.collapsible-box {
+  margin: 1rem 0;
+  border: 2px solid #33ff33;
+  background-color: rgba(17, 17, 17, 0.8);
+  width: fit-content;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+  animation-delay: 1.7s;
+}
+
+.collapsible-btn {
+  background-color: #111;
+  color: #fff;
+  border: none;
+  padding: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid #33ff33;
+}
+
+.collapsible-btn:hover {
+  box-shadow: inset 0 0 10px rgba(51, 255, 51, 0.2);
+  color: #33ff33;
+}
+
+.collapsible-btn.active {
+  box-shadow: 0 0 10px #33ff33, inset 0 0 10px rgba(51, 255, 51, 0.3);
+  color: #33ff33;
+}
+
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  border-top: 2px solid #33ff33;
+  color: #fff;
+}
+
+.collapsible-content.show {
+  max-height: 500px;
+  padding: 1rem;
+}
+
+.collapsible-content p {
+  margin: 0;
+  padding: 0;
+}
